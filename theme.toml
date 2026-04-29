@@ -1,0 +1,10 @@
+name = "dress"
+license = "ISC"
+licenselink = "https://github.com/remino/hugo-dress/blob/main/LICENSE"
+description = "Semantic, classless Hugo theme using dress.css."
+homepage = "https://remino.net/"
+min_version = "0.120.0"
+
+[author]
+  name = "Rémino Rem"
+  homepage = "https://remino.net/"

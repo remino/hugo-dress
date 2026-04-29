@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <article>
+    {{ partial "dress/language-links.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+    {{ with .Pages.ByTitle }}
+      <section aria-label="Pages">
+        <ul>
+          {{ range . }}
+            <li>
+              <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ with .Description }}<p>{{ . }}</p>{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </article>
+{{ end }}

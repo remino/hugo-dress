@@ -1,0 +1,25 @@
+{
+  "name": "hugo-dress",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Semantic, classless Hugo theme using dress.css.",
+  "license": "ISC",
+  "author": {
+    "name": "Rémino Rem",
+    "url": "https://remino.net/"
+  },
+  "homepage": "https://remino.net/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remino/hugo-dress.git"
+  },
+  "bugs": {
+    "url": "https://github.com/remino/hugo-dress/issues"
+  },
+  "dependencies": {
+    "@remino/dress.css": "^5.3.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "postcss-import": "^16.1.1"
+  }
+}
