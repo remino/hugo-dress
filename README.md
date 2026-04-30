@@ -16,7 +16,7 @@ By Rémino Rem
 templates and lets the stylesheet do the visual work.
 
 The theme stays deliberately bare: page structure, navigation, language links,
-basic shortcodes, and optional site CSS. Section-specific behavior such as
+and optional site CSS. Section-specific behavior such as shortcodes,
 pagination, taxonomies, search, and custom front matter display belongs in the
 host site as Hugo layout overrides.
 
@@ -30,6 +30,9 @@ host site as Hugo layout overrides.
     - [Hugo module](#hugo-module)
     - [CSS dependencies](#css-dependencies)
 - [Usage](#usage)
+    - [Logo](#logo)
+    - [Favicons](#favicons)
+    - [Footer menu](#footer-menu)
     - [Custom CSS](#custom-css)
     - [Layout overrides](#layout-overrides)
 - [Development](#development)
@@ -42,12 +45,12 @@ host site as Hugo layout overrides.
 ## Features
 
 - **Class-less** - templates use semantic HTML and rely on dress.css.
-- **Small** - minimal layouts, partials, and shortcodes.
+- **Small** - minimal layouts and partials.
 - **Plain** - no bundled search, JavaScript, resource metadata, or taxonomy UI.
 - **Customizable** - host sites can override any Hugo layout or partial.
 - **Hugo-native** - works as a regular theme directory or Hugo module.
-- **Site-friendly** - loads optional host `assets/scss/index.scss` after
-  dress.css.
+- **Site-friendly** - combines optional host `assets/css/custom.css` after
+  dress.css in the same stylesheet.
 
 [Back to top](#)
 
@@ -97,10 +100,55 @@ The default templates render home, list, term, and single pages with ordinary
 HTML elements such as `header`, `nav`, `main`, `article`, `section`, `footer`,
 lists, and definition lists.
 
+### Logo
+
+Set `params.dress.logo` to show a logo before the site title:
+
+```yaml
+params:
+    dress:
+        logo:
+            src: images/logo.svg
+            width: 100
+            height: 100
+            alt: ""
+```
+
+### Favicons
+
+Set `params.dress.favicons` to add favicon link tags:
+
+```yaml
+params:
+    dress:
+        favicons:
+            - href: favicon.ico
+              sizes: any
+            - href: favicon.svg
+              type: image/svg+xml
+            - rel: apple-touch-icon
+              href: apple-touch-icon.png
+```
+
+### Footer menu
+
+Use Hugo's `footer` menu for footer links:
+
+```yaml
+menu:
+    footer:
+        - name: Contact
+          url: mailto:hello@example.com
+          weight: 1
+        - name: Back to top
+          url: "#"
+          weight: 2
+```
+
 ### Custom CSS
 
-Create `assets/scss/index.scss` in the host site for site-specific styles. The
-theme compiles it after dress.css so local overrides win.
+Create `assets/css/custom.css` in the host site for site-specific styles. The
+theme combines it after dress.css in the same stylesheet so local overrides win.
 
 ### Layout overrides
 

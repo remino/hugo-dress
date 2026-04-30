@@ -1,12 +1,15 @@
 <footer>
-  <nav aria-label="Footer">
-    <ul>
-      {{ range site.Menus.main }}
-        {{ if eq .Identifier "contact" }}
-          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+  {{ with site.Menus.footer }}
+    <nav aria-label="Footer">
+      <ul>
+        {{ range . }}
+          {{ $url := .URL }}
+          {{ if not (hasPrefix $url "#") }}
+            {{ $url = $url | relLangURL }}
+          {{ end }}
+          <li><a href="{{ $url }}">{{ .Name }}</a></li>
         {{ end }}
-      {{ end }}
-      <li><a href="#">Back to top</a></li>
-    </ul>
-  </nav>
+      </ul>
+    </nav>
+  {{ end }}
 </footer>

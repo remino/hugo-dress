@@ -11,13 +11,13 @@
     <meta name="description" content="{{ . }}">
   {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
-  <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
-  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
-  {{ $styles := resources.Get "css/dress.css" | postCSS (dict "use" "postcss-import") | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
-  {{ with resources.Get "scss/index.scss" }}
-    {{ $custom := . | toCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $custom.RelPermalink }}" integrity="{{ $custom.Data.Integrity }}">
+  {{ range site.Params.dress.favicons }}
+    <link rel="{{ .rel | default "icon" }}" href="{{ .href | relURL }}"{{ with .sizes }} sizes="{{ . }}"{{ end }}{{ with .type }} type="{{ . }}"{{ end }}>
   {{ end }}
+  {{ $styles := slice (resources.Get "css/dress.css" | postCSS (dict "use" "postcss-import")) }}
+  {{ with resources.Get "css/custom.css" }}
+    {{ $styles = $styles | append . }}
+  {{ end }}
+  {{ $styles = $styles | resources.Concat "css/dress.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 </head>
