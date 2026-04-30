@@ -148,7 +148,8 @@ menu:
 ### Custom CSS
 
 Create `assets/css/custom.css` in the host site for site-specific styles. The
-theme combines it after dress.css in the same stylesheet so local overrides win.
+theme processes it with PostCSS, then combines it after dress.css in the same
+stylesheet so local overrides win.
 
 ### Layout overrides
 

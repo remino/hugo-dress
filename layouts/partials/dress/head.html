@@ -16,7 +16,7 @@
   {{ end }}
   {{ $styles := slice (resources.Get "css/dress.css" | postCSS (dict "use" "postcss-import")) }}
   {{ with resources.Get "css/custom.css" }}
-    {{ $styles = $styles | append . }}
+    {{ $styles = $styles | append (. | postCSS) }}
   {{ end }}
   {{ $styles = $styles | resources.Concat "css/dress.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
