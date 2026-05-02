@@ -28,7 +28,6 @@ host site as Hugo layout overrides.
 - [Installation](#installation)
     - [Theme directory](#theme-directory)
     - [Hugo module](#hugo-module)
-    - [CSS dependencies](#css-dependencies)
 - [Usage](#usage)
     - [Logo](#logo)
     - [Favicons](#favicons)
@@ -49,8 +48,8 @@ host site as Hugo layout overrides.
 - **Plain** - no bundled search, JavaScript, resource metadata, or taxonomy UI.
 - **Customizable** - host sites can override any Hugo layout or partial.
 - **Hugo-native** - works as a regular theme directory or Hugo module.
-- **Site-friendly** - combines optional host `assets/css/custom.css` after
-  dress.css in the same stylesheet.
+- **Site-friendly** - ships dress.css and combines optional host
+  `assets/css/custom.css` after it in the same stylesheet.
 
 [Back to top](#)
 
@@ -80,14 +79,6 @@ Then add it to your Hugo configuration:
 module:
     imports:
         - path: github.com/remino/hugo-dress
-```
-
-### CSS dependencies
-
-Install the CSS build dependencies in the Hugo site:
-
-```sh
-npm add @remino/dress.css postcss postcss-cli postcss-import
 ```
 
 [Back to top](#)
@@ -148,8 +139,7 @@ menu:
 ### Custom CSS
 
 Create `assets/css/custom.css` in the host site for site-specific styles. The
-theme processes it with PostCSS, then combines it after dress.css in the same
-stylesheet so local overrides win.
+theme combines it after dress.css in the same stylesheet so local overrides win.
 
 ### Layout overrides
 
@@ -167,6 +157,12 @@ Install dependencies:
 
 ```sh
 npm install
+```
+
+Update the vendored dress.css asset:
+
+```sh
+npm run update:dress-css
 ```
 
 Test the theme from a Hugo site that imports or symlinks this repository:
