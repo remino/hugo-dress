@@ -15,10 +15,7 @@
     {{ $rel := .rel | default "icon" }}
     <link rel="{{ $rel }}" href="{{ .href | relURL }}"{{ with .sizes }} sizes="{{ . }}"{{ end }}{{ with .type }} type="{{ . }}"{{ end }}>
   {{ end }}
-  {{ $styles := slice (resources.Get "css/dress.css") }}
-  {{ with resources.Get "css/custom.css" }}
-    {{ $styles = $styles | append . }}
-  {{ end }}
-  {{ $styles = $styles | resources.Concat "css/dress.css" | minify | fingerprint }}
+  {{ $styles := resources.Get "css/dress.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
+  {{ partial "dress/custom-css.html" . }}
 </head>
