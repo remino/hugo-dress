@@ -1,10 +1,12 @@
 <header>
   <h1>
-    <a href="{{ "/" | relLangURL }}">
+    {{ $home := relLangURL "/" }}
+    <a href="{{ $home }}">
       {{ with site.Params.dress.logo }}
         {{ with .src }}
           {{ $logo := site.Params.dress.logo }}
-          <img src="{{ . | relURL }}" alt="{{ $logo.alt | default "" }}"{{ with $logo.width }} width="{{ . }}"{{ end }}{{ with $logo.height }} height="{{ . }}"{{ end }}>
+          {{ $alt := $logo.alt | default "" }}
+          <img src="{{ . | relURL }}" alt="{{ $alt }}"{{ with $logo.width }} width="{{ . }}"{{ end }}{{ with $logo.height }} height="{{ . }}"{{ end }}>
         {{ end }}
       {{ end }}
       {{ site.Title }}

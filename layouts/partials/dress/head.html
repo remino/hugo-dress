@@ -12,7 +12,8 @@
   {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
   {{ range site.Params.dress.favicons }}
-    <link rel="{{ .rel | default "icon" }}" href="{{ .href | relURL }}"{{ with .sizes }} sizes="{{ . }}"{{ end }}{{ with .type }} type="{{ . }}"{{ end }}>
+    {{ $rel := .rel | default "icon" }}
+    <link rel="{{ $rel }}" href="{{ .href | relURL }}"{{ with .sizes }} sizes="{{ . }}"{{ end }}{{ with .type }} type="{{ . }}"{{ end }}>
   {{ end }}
   {{ $styles := slice (resources.Get "css/dress.css") }}
   {{ with resources.Get "css/custom.css" }}
